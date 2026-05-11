@@ -2,72 +2,71 @@ const TodoModel = require("../model/todoModel");
 
 //crud
 const getAllTodos = async (req, res) => {
-    try {
-        const todos = await TodoModel.find();
-        return res.status(200).json({
-            message: "All Todos",
-            data: todos
-        });
-    } catch(err) {
-        return res.status(500).json({error: err.message});
-    }
+  try {
+    const todos = await TodoModel.find();
+    return res.status(200).json({
+      message: "All Todos",
+      data: todos,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 };
 
 const getOneTodo = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { completed } = req.body;
-        const todo = await TodoModel.findById(id);
-        return res.status(200).json({
-            message: "Todo Found",
-            data: todo
-        });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
-    }
+  try {
+    const { id } = req.params;
+    const todo = await TodoModel.findById(id);
+    return res.status(200).json({
+      message: "Todo found",
+      data: todo,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 };
 
 const createTodo = async (req, res) => {
-    try {
-        const { title, details } = req.body;
-        const todo = await TodoModel.create({ title, details });
-        return res.status(201).json({
-            message: "Todo Created",
-            data: todo
-        });
-    } catch(err) {
-        return res.status(500).json({ error: err.message });
-    }
+  try {
+    const { title, details } = req.body;
+    const todo = await TodoModel.create({ title, details });
+    return res.status(201).json({
+      message: "Todo created",
+      data: todo,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 };
 
 const updateTodo = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { completed } = req.body;
-        const todo = await TodoModel.findByIdAndUpdate(
-            id,
-            { completed: true },
-            { new: true },
-        );
-        return res.status(200).json({
-            message: "Todo Updated",
-            data: todo,
-        });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
-    }
+  try {
+    const { id } = req.params;
+    
+    const todo = await TodoModel.findByIdAndUpdate(
+      id,
+      { completed: true },
+      { new: true },
+    );
+    return res.status(200).json({
+      message: "Todo updated",
+      data: todo,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 };
 
 const deleteTodo = async (req, res) => {
-    try {
-        const { id } = req.params; 
-        await TodoModel.findByIdAndDelete(id);
-        return res.status(200).json({
-            message: "Todo Deleted",
-        });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
-    }
+  try {
+    const { id } = req.params;
+    await TodoModel.findByIdAndDelete(id);
+    return res.status(200).json({
+      message: "Todo deleted",
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 };
 
 module.exports = {
