@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const router = require("./routes/todoRoutes");
 const live_url =
-  "mongodb+srv://ihannahekundayo_db_user:632yfvjR11abBOnP@cluster0.ybogufw.mongodb.net/?appName=Cluster0";
+  "mongodb://dev_Samuel:Olateju+98@ac-fgwz52s-shard-00-00.n1fna5z.mongodb.net:27017,ac-fgwz52s-shard-00-01.n1fna5z.mongodb.net:27017,ac-fgwz52s-shard-00-02.n1fna5z.mongodb.net:27017/?ssl=true&replicaSet=atlas-o5qtrt-shard-0&authSource=admin&appName=Cluster0";
 const local_url = "mongodb://localhost:27017/userDB";
 
 mongoose
